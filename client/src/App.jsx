@@ -7,7 +7,6 @@ import CategoryPage from './pages/CategoryPage';
 import About from './pages/About';
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
-import LoginPage from './pages/LoginPage';
 
 import AdminDashboard from './pages/AdminDashboard';
 

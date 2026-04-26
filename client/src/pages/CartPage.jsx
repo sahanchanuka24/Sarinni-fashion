@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, Plus, Minus, ShoppingBag, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,7 +7,6 @@ import axios from 'axios';
 
 const CartPage = () => {
   const { cartItems, removeFromCart, addToCart, cartCount, clearCart } = useCart();
-  const { user } = useAuth();
   const navigate = useNavigate();
   
   const [showCheckout, setShowCheckout] = useState(false);
@@ -17,7 +15,7 @@ const CartPage = () => {
   const [error, setError] = useState('');
   
   const [shippingInfo, setShippingInfo] = useState({
-    email: user?.email || '',
+    email: '',
     address: '',
     city: '',
     phoneNo: '',

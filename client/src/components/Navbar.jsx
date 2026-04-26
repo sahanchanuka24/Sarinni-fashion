@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Search, Heart, User, Menu, X, LogOut } from 'lucide-react';
+import { ShoppingBag, Search, Heart, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const { cartCount, wishlistCount } = useCart();
-  const { user, logout } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -66,22 +64,6 @@ const Navbar = () => {
           <Link to="/search" className="text-premium-black hover:text-premium-gold transition-colors hidden sm:block">
             <Search size={20} strokeWidth={1.5} />
           </Link>
-
-          {user && user.role === 'admin' && (
-            <Link to="/admin-dashboard-sarinni" className="text-xs font-bold uppercase tracking-widest text-premium-gold hover:text-premium-black transition-colors hidden sm:block">
-              Admin
-            </Link>
-          )}
-
-          {user ? (
-            <button onClick={logout} className="text-premium-black hover:text-red-500 transition-colors hidden sm:block" title="Logout">
-              <LogOut size={20} strokeWidth={1.5} />
-            </button>
-          ) : (
-            <Link to="/login" className="text-premium-black hover:text-premium-gold transition-colors hidden sm:block" title="Login">
-              <User size={20} strokeWidth={1.5} />
-            </Link>
-          )}
 
           <Link to="/wishlist" className="text-premium-black hover:text-premium-gold transition-colors hidden sm:block relative">
             <Heart size={20} strokeWidth={1.5} />
