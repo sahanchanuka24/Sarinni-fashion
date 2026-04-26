@@ -79,6 +79,16 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const updateQuantity = (id, delta) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item._id === id
+          ? { ...item, quantity: Math.max(1, (item.quantity || 1) + delta) }
+          : item
+      )
+    );
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
@@ -91,6 +101,7 @@ export const CartProvider = ({ children }) => {
       wishlist, 
       addToCart, 
       removeFromCart, 
+      updateQuantity,
       toggleWishlist,
       clearCart,
       cartCount,

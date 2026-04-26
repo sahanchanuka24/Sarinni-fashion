@@ -18,12 +18,16 @@ const ProductCard = ({ product }) => {
         <img 
           src={primaryImage} 
           alt={product.name}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 group-hover:opacity-0"
         />
         {/* Secondary Image (Hover) */}
         <img 
           src={secondaryImage} 
           alt={`${product.name} alternate view`}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 scale-105 group-hover:scale-100 opacity-0 group-hover:opacity-100"
         />
         
