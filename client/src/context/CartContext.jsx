@@ -6,6 +6,7 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const getCartKey = () => 'cart_guest';
   const getWishlistKey = () => 'wishlist_guest';
@@ -63,6 +64,7 @@ export const CartProvider = ({ children }) => {
       }
       return [...prevItems, { ...product, quantity: 1 }];
     });
+    setIsCartOpen(true); // Auto-open cart when adding items
   };
 
   const removeFromCart = (id) => {
@@ -92,7 +94,9 @@ export const CartProvider = ({ children }) => {
       toggleWishlist,
       clearCart,
       cartCount,
-      wishlistCount: wishlist.length
+      wishlistCount: wishlist.length,
+      isCartOpen,
+      setIsCartOpen
     }}>
       {children}
     </CartContext.Provider>
