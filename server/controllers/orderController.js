@@ -18,19 +18,20 @@ exports.newOrder = async (req, res) => {
       user: req.user ? req.user._id : undefined
     });
 
-    // Send Order Confirmation Email
+    // Send Order Confirmation Email asynchronously so it doesn't block the checkout
     try {
-      // Create a guest user object for the template if req.user is missing
       const emailUser = req.user || { name: 'Valued Customer' };
       const emailHtml = getOrderTemplate(order, emailUser);
       
-      await sendEmail({
+      sendEmail({
         email: shippingInfo.email,
         subject: `Order Confirmation - Sarinni #${order._id.toString().slice(-8).toUpperCase()}`,
         html: emailHtml
+      }).catch(emailError => {
+        console.error('Email could not be sent in background:', emailError.message);
       });
-    } catch (emailError) {
-      console.error('Email could not be sent:', emailError.message);
+    } catch (err) {
+      console.error('Error preparing email:', err.message);
     }
 
     res.status(201).json({ success: true, order });
