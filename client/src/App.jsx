@@ -9,6 +9,8 @@ import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
 import LoginPage from './pages/LoginPage';
 
+import AdminDashboard from './pages/AdminDashboard';
+
 function App() {
   return (
     <Router>
@@ -21,7 +23,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin-dashboard-sarinni" element={<AdminDashboard />} />
         </Routes>
         
         {/* Footer could be added here */}

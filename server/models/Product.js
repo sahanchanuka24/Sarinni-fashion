@@ -12,14 +12,13 @@ const productSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: [true, 'Please enter product price'],
-    maxLength: [8, 'Price cannot exceed 8 characters']
+    required: [true, 'Please enter product price']
   },
   category: {
     type: String,
     required: [true, 'Please select category for this product'],
     enum: {
-      values: ['Silk', 'Cotton', 'Batik', 'Handloom', 'Premium', 'Resort Wear'],
+      values: ['Silk', 'Cotton', 'Batik', 'Handloom', 'Premium', 'Resort Wear', 'Bridal', 'Party Wear'],
       message: 'Please select correct category'
     }
   },
@@ -52,6 +51,18 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  reviews: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
+      name: { type: String, required: true },
+      rating: { type: Number, required: true },
+      comment: { type: String, required: true }
+    }
+  ],
   createdAt: {
     type: Date,
     default: Date.now

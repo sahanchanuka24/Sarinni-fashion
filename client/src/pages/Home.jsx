@@ -1,40 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Home = () => {
-  // Mock products for UI demonstration
-  const featuredProducts = [
-    {
-      _id: '1',
-      name: 'Midnight Batik Sarong',
-      price: 18500,
-      category: 'Batik',
-      images: [{ url: 'https://images.unsplash.com/photo-1605902711622-cfb43c443ffb?auto=format&fit=crop&q=80&w=600' }]
-    },
-    {
-      _id: '2',
-      name: 'Coastal Handloom',
-      price: 6200,
-      category: 'Handloom',
-      images: [{ url: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=600' }]
-    },
-    {
-      _id: '3',
-      name: 'Royal Heritage',
-      price: 22000,
-      category: 'Premium',
-      images: [{ url: 'https://images.unsplash.com/photo-1590736704728-f4730bb30770?auto=format&fit=crop&q=80&w=600' }]
-    },
-    {
-      _id: '4',
-      name: 'Island Breeze',
-      price: 4500,
-      category: 'Resort Wear',
-      images: [{ url: 'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=600' }]
-    }
-  ];
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const { data } = await axios.get('/products');
+        // Just take the first 4 for best sellers
+        setFeaturedProducts(data.products.slice(0, 4));
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching featured products:', error);
+        setLoading(false);
+      }
+    };
+    fetchFeatured();
+  }, []);
 
   return (
     <main className="bg-premium-cream">
@@ -63,24 +51,32 @@ const Home = () => {
           <div className="w-20 h-[2px] bg-premium-gold mt-6"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featuredProducts.map((product, index) => (
-            <motion.div
-              key={product._id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-            >
-              <ProductCard product={product} />
-            </motion.div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex justify-center py-20">
+            <div className="w-10 h-10 border-2 border-premium-gold border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredProducts.map((product, index) => (
+              <motion.div
+                key={product._id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+              >
+                <ProductCard product={product} />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         <div className="flex justify-center mt-16">
-          <button className="px-10 py-4 border border-premium-black text-premium-black hover:bg-premium-black hover:text-premium-cream transition-all duration-300 font-medium tracking-widest uppercase text-sm">
-            View All Sarongs
-          </button>
+          <Link to="/collections">
+            <button className="px-10 py-4 border border-premium-black text-premium-black hover:bg-premium-black hover:text-premium-cream transition-all duration-300 font-medium tracking-widest uppercase text-sm">
+              View All Sarongs
+            </button>
+          </Link>
         </div>
       </section>
 

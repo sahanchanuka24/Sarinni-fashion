@@ -13,7 +13,7 @@ const CategoryPage = () => {
     const fetchCategoryProducts = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get('/products');
         // Simple client-side filtering for demonstration
         // In a real app, this would be a backend query like /api/products?category=Batik
         const filtered = data.products.filter(p => 
