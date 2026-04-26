@@ -67,6 +67,22 @@ const Navbar = () => {
             <Search size={20} strokeWidth={1.5} />
           </Link>
 
+          {user && user.role === 'admin' && (
+            <Link to="/admin-dashboard-sarinni" className="text-xs font-bold uppercase tracking-widest text-premium-gold hover:text-premium-black transition-colors hidden sm:block">
+              Admin
+            </Link>
+          )}
+
+          {user ? (
+            <button onClick={logout} className="text-premium-black hover:text-red-500 transition-colors hidden sm:block" title="Logout">
+              <LogOut size={20} strokeWidth={1.5} />
+            </button>
+          ) : (
+            <Link to="/login" className="text-premium-black hover:text-premium-gold transition-colors hidden sm:block" title="Login">
+              <User size={20} strokeWidth={1.5} />
+            </Link>
+          )}
+
           <Link to="/wishlist" className="text-premium-black hover:text-premium-gold transition-colors hidden sm:block relative">
             <Heart size={20} strokeWidth={1.5} />
             {wishlistCount > 0 && (

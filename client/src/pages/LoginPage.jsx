@@ -21,12 +21,18 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
+      let responseData;
       if (isLogin) {
-        await login(formData.email, formData.password);
+        responseData = await login(formData.email, formData.password);
       } else {
-        await register(formData.name, formData.email, formData.password);
+        responseData = await register(formData.name, formData.email, formData.password);
       }
-      navigate('/');
+      
+      if (responseData && responseData.user && responseData.user.role === 'admin') {
+        navigate('/admin-dashboard-sarinni');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Authentication failed. Please try again.');
     } finally {
