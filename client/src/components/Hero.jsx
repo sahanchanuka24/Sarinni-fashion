@@ -1,12 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import heroImage from '../assets/hero-sarong.png';
 
 const Hero = () => {
   return (
-    <section className="relative h-screen w-full bg-premium-cream overflow-hidden">
-      {/* Background Image - optimized, no heavy continuous animations */}
+    <section className="relative h-screen w-full bg-white overflow-hidden">
+      {/* Background Image - Clean minimalist fashion aesthetic */}
       <div className="absolute inset-0 z-0">
         <motion.div
           initial={{ scale: 1.05, opacity: 0 }}
@@ -15,13 +13,13 @@ const Hero = () => {
           className="w-full h-full"
         >
           <img 
-            src={heroImage} 
-            alt="Premium Sarong Collection" 
-            className="w-full h-full object-cover object-[center_20%]"
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop" 
+            alt="Premium Minimalist Fashion" 
+            className="w-full h-full object-cover object-center"
           />
         </motion.div>
         {/* Soft overlay gradient to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-premium-cream via-premium-cream/40 to-transparent sm:bg-gradient-to-r sm:from-premium-cream/80 sm:via-premium-cream/50 sm:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent sm:bg-gradient-to-r sm:from-white/90 sm:via-white/50 sm:to-transparent"></div>
       </div>
 
       {/* Content */}
@@ -32,8 +30,8 @@ const Hero = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="overflow-hidden mb-6"
         >
-          <span className="text-premium-gold font-medium tracking-[0.4em] uppercase text-xs sm:text-sm">
-            Tropical Luxury
+          <span className="text-premium-black/60 font-semibold tracking-[0.5em] uppercase text-[10px] sm:text-xs">
+            Essential Resort Wear
           </span>
         </motion.div>
         
@@ -41,19 +39,19 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-5xl sm:text-7xl md:text-8xl font-serif text-premium-black leading-[1.1] mb-6 max-w-3xl"
+          className="text-6xl sm:text-7xl md:text-[100px] font-sans font-bold tracking-tighter text-premium-black leading-[0.9] mb-8 max-w-4xl"
         >
-          Redefining the <br className="hidden sm:block" />
-          <span className="italic text-premium-gold font-light">Modern Sarong</span>
+          THE MODERN<br className="hidden sm:block" />
+          <span className="text-premium-black/20">SARONG.</span>
         </motion.h1>
 
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 1 }}
-          className="text-base sm:text-lg text-premium-black/70 max-w-md mb-12 leading-relaxed"
+          className="text-base sm:text-lg text-premium-black/70 max-w-md mb-12 leading-relaxed font-light"
         >
-          Experience the fusion of traditional craftsmanship and contemporary resort style. Handcrafted for the discerning traveler.
+          Redefining tropical luxury through clean lines, premium fabrics, and uncompromising minimalist aesthetics.
         </motion.p>
 
         <motion.div
@@ -62,14 +60,11 @@ const Hero = () => {
           transition={{ delay: 0.9, duration: 0.8 }}
           className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 w-full sm:w-auto px-4 sm:px-0"
         >
-          <Link to="/collections" className="w-full sm:w-auto">
+          <a href="#shop" className="w-full sm:w-auto">
             <button className="btn-premium w-full sm:w-auto">
               Shop Collection
             </button>
-          </Link>
-          <button className="btn-outline w-full sm:w-auto">
-            Resort Lookbook
-          </button>
+          </a>
         </motion.div>
       </div>
 
@@ -78,10 +73,10 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center hidden sm:flex"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center hidden sm:flex"
       >
-        <span className="text-[9px] uppercase tracking-[0.3em] mb-3 text-premium-black/40">Discover</span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-premium-gold to-transparent opacity-50"></div>
+        <span className="text-[10px] uppercase tracking-[0.3em] mb-4 text-premium-black/40 font-medium">Scroll</span>
+        <div className="w-[1px] h-12 bg-premium-black/20"></div>
       </motion.div>
     </section>
   );
