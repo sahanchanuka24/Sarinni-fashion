@@ -7,7 +7,6 @@ import CategoryPage from './pages/CategoryPage';
 import About from './pages/About';
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
-
 import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
@@ -24,7 +23,7 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/admin-dashboard-sarinni" element={<AdminDashboard />} />
         </Routes>
-        
+
         {/* Footer could be added here */}
         <footer className="bg-premium-cream py-12 border-t border-premium-black/5">
           <div className="container mx-auto px-6 text-center">
