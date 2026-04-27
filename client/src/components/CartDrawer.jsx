@@ -8,6 +8,7 @@ const CartDrawer = () => {
   const { isCartOpen, setIsCartOpen, cartItems, removeFromCart, updateQuantity, cartCount, clearCart } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [checkoutError, setCheckoutError] = useState('');
 
   // Checkout form state
   const [shippingInfo, setShippingInfo] = useState({
@@ -25,6 +26,7 @@ const CartDrawer = () => {
     e.preventDefault();
     
     setIsProcessing(true);
+    setCheckoutError('');
     try {
       const orderData = {
         orderItems: cartItems.map(item => ({
@@ -46,7 +48,7 @@ const CartDrawer = () => {
       clearCart();
     } catch (error) {
       console.error('Checkout failed:', error);
-      alert('Checkout failed. Please try again.');
+      setCheckoutError(error.response?.data?.message || 'Checkout failed. Please check your details and try again.');
     } finally {
       setIsProcessing(false);
     }
@@ -213,6 +215,12 @@ const CartDrawer = () => {
                           />
                         </div>
                       </div>
+
+                      {checkoutError && (
+                        <div className="bg-red-50 border border-red-200 text-red-600 text-xs rounded-lg px-4 py-3">
+                          {checkoutError}
+                        </div>
+                      )}
 
                       <button 
                         type="submit" 

@@ -11,7 +11,7 @@ const orderSchema = new mongoose.Schema({
       name: { type: String, required: true },
       quantity: { type: Number, required: true },
       price: { type: Number, required: true },
-      image: { type: String, required: true },
+      image: { type: String, required: false, default: '' },
       product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
     email: { type: String, required: true },
     address: { type: String, required: true },
     city: { type: String, required: true },
-    postalCode: { type: String, required: true },
+    postalCode: { type: String, required: false, default: '' },
     country: { type: String, required: true, default: 'Sri Lanka' },
     phoneNo: { type: String, required: true }
   },
