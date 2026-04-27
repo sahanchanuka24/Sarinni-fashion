@@ -1,137 +1,89 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,300&display=swap');
 
 @theme {
-  /* ── Avurudu Edition Palette ── */
-  --color-premium-cream:      #FDF6EC;   /* warm ivory */
-  --color-premium-gold:       #E8A020;   /* Avurudu saffron */
-  --color-premium-black:      #1A1209;   /* warm dark */
-  --color-premium-rose:       #F5E6D3;   /* warm blush section bg */
-  --color-premium-sage:       #3D7A5C;   /* jade green */
-  --color-avurudu-saffron:    #E8A020;
-  --color-avurudu-terracotta: #C0533A;
-  --color-avurudu-jade:       #3D7A5C;
-  --color-avurudu-cream:      #FDF6EC;
-  --color-avurudu-blush:      #F5E6D3;
-  --color-avurudu-dark:       #1A1209;
+  --color-brand-black:  #0F0F0F;
+  --color-brand-white:  #FFFFFF;
+  --color-brand-cream:  #F8F6F2;
+  --color-brand-gray:   #6B6B6B;
+  --color-brand-light:  #F2F2F2;
+  --color-brand-gold:   #C9A84C;
 
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "Inter", sans-serif;
+  /* Legacy aliases (used by admin/cart pages) */
+  --color-premium-cream:  #F8F6F2;
+  --color-premium-gold:   #C9A84C;
+  --color-premium-black:  #0F0F0F;
+  --color-premium-rose:   #F2F2F2;
+  --color-avurudu-cream:  #F8F6F2;
+  --color-avurudu-dark:   #0F0F0F;
+  --color-avurudu-saffron: #C9A84C;
+  --color-avurudu-blush:  #F2F2F2;
+  --color-avurudu-jade:   #3D7A5C;
+  --color-avurudu-terracotta: #A0522D;
 
-  --animate-fade-in:  fadeIn 1s ease-out;
-  --animate-slide-up: slideUp 0.8s ease-out;
-  --animate-float:    floatAnim 4s ease-in-out infinite;
-  --animate-shimmer:  shimmer 2.5s ease-in-out infinite;
-
-  @keyframes fadeIn {
-    0%   { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  @keyframes slideUp {
-    0%   { transform: translateY(20px); opacity: 0; }
-    100% { transform: translateY(0);    opacity: 1; }
-  }
-  @keyframes floatAnim {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50%       { transform: translateY(-12px) rotate(3deg); }
-  }
-  @keyframes shimmer {
-    0%, 100% { opacity: 0.6; }
-    50%       { opacity: 1; }
-  }
-  @keyframes petals {
-    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-  }
-  @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(232, 160, 32, 0.3); }
-    50%       { box-shadow: 0 0 40px rgba(232, 160, 32, 0.7); }
-  }
+  --font-sans:   "Inter", system-ui, sans-serif;
+  --font-serif:  "Inter", system-ui, sans-serif;
 }
 
+/* ── Base ── */
 @layer base {
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    font-size: 16px;
   }
   body {
-    @apply bg-avurudu-cream text-avurudu-dark font-sans antialiased;
+    @apply bg-brand-white text-brand-black font-sans antialiased;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     overscroll-behavior-y: none;
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans tracking-tight;
-  }
-
+  h1,h2,h3,h4,h5,h6 { @apply font-sans; }
   button, a {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
 }
 
+/* ── Components ── */
 @layer components {
-  /* Primary CTA — Avurudu saffron */
-  .btn-premium {
-    @apply px-10 py-3.5 bg-avurudu-saffron text-white hover:bg-avurudu-terracotta active:scale-[0.98] transition-all duration-300 ease-out font-semibold rounded-full shadow-md hover:shadow-lg text-sm tracking-wide;
+  /* Primary button — solid black */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-black text-white text-[11px] font-semibold uppercase tracking-[0.15em] hover:bg-brand-gray active:scale-[0.98] transition-all duration-200;
+  }
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-brand-black text-brand-black text-[11px] font-semibold uppercase tracking-[0.15em] hover:bg-brand-black hover:text-white active:scale-[0.98] transition-all duration-200;
   }
 
-  .btn-outline {
-    @apply px-10 py-3.5 border-2 border-avurudu-saffron text-avurudu-saffron hover:bg-avurudu-saffron hover:text-white active:scale-[0.98] transition-all duration-300 ease-out font-semibold rounded-full bg-transparent text-sm tracking-wide;
+  /* Legacy aliases */
+  .btn-premium { @apply btn-primary; }
+  .btn-outline  { @apply btn-ghost; }
+  .btn-dark     { @apply btn-primary; }
+  .badge-avurudu {
+    @apply inline-flex items-center gap-1 px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-[10px] font-semibold uppercase tracking-widest;
   }
-
-  .btn-dark {
-    @apply px-10 py-3.5 bg-avurudu-dark text-avurudu-cream hover:bg-avurudu-jade active:scale-[0.98] transition-all duration-300 ease-out font-medium rounded-full shadow-md text-sm tracking-wide;
-  }
-
-  .link-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-avurudu-saffron after:transition-all after:duration-300 hover:after:w-full;
-  }
-
-  /* Gold decorative divider */
   .divider-avurudu {
-    @apply flex items-center gap-4 my-8;
+    @apply flex items-center gap-4 my-6;
   }
   .divider-avurudu::before,
   .divider-avurudu::after {
     content: '';
-    @apply flex-1 h-px bg-gradient-to-r from-transparent via-avurudu-saffron/40 to-transparent;
+    @apply flex-1 h-px bg-brand-gold/30;
   }
-
-  /* Avurudu festive badge */
-  .badge-avurudu {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 bg-avurudu-saffron/10 border border-avurudu-saffron/30 text-avurudu-saffron text-[10px] font-semibold uppercase tracking-widest rounded-full;
-  }
-
-  /* Card with warm hover */
-  .card-warm {
-    @apply bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 border border-avurudu-saffron/5 hover:border-avurudu-saffron/20;
-  }
+  .card-warm { @apply bg-white border border-brand-light hover:border-brand-black/20 transition-colors; }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--color-avurudu-cream); }
-::-webkit-scrollbar-thumb {
-  background: rgba(232, 160, 32, 0.25);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(232, 160, 32, 0.5);
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #fff; }
+::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #bbb; }
 
-/* Floating petal animation utility */
-.petal {
-  animation: petals linear infinite;
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
+/* Petal animation (hero) */
+@keyframes petals {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
-
-/* Glow for lamp/icon elements */
-.glow-gold {
-  animation: glow 2.5s ease-in-out infinite;
-}
+.petal { animation: petals linear infinite; position: absolute; pointer-events: none; user-select: none; }

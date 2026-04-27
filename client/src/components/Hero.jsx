@@ -1,162 +1,121 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-// Floating petal component
 const Petal = ({ style, emoji }) => (
-  <span
-    className="petal select-none pointer-events-none text-2xl"
-    style={style}
-  >
-    {emoji}
-  </span>
+  <span className="petal select-none pointer-events-none" style={style}>{emoji}</span>
 );
 
 const Hero = () => {
   const [petals, setPetals] = useState([]);
 
   useEffect(() => {
-    const items = ['🌸', '🌼', '🪷', '✨', '🌺', '🍀'];
-    const generated = Array.from({ length: 14 }, (_, i) => ({
+    const items = ['🌸', '✦', '🌺', '✧', '🪷'];
+    const generated = Array.from({ length: 10 }, (_, i) => ({
       id: i,
       emoji: items[i % items.length],
       style: {
         left: `${Math.random() * 100}%`,
-        top: `-${Math.random() * 10 + 2}%`,
-        fontSize: `${Math.random() * 16 + 14}px`,
-        animationDuration: `${Math.random() * 8 + 7}s`,
-        animationDelay: `${Math.random() * 6}s`,
-        opacity: Math.random() * 0.5 + 0.3,
+        top: `-3%`,
+        fontSize: `${Math.random() * 12 + 10}px`,
+        animationDuration: `${Math.random() * 10 + 10}s`,
+        animationDelay: `${Math.random() * 8}s`,
+        opacity: Math.random() * 0.4 + 0.2,
       },
     }));
     setPetals(generated);
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-avurudu-dark">
+    <section className="relative w-full bg-[#0F0F0F] overflow-hidden" style={{ minHeight: '100svh' }}>
       {/* Floating petals */}
       <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
         {petals.map(p => <Petal key={p.id} {...p} />)}
       </div>
 
-      {/* Background Image */}
+      {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <motion.div
-          initial={{ scale: 1.08, opacity: 0 }}
+        <motion.img
+          src="/avurudu-hero.jpg"
+          alt="Avurudu Sarong Collection"
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+          fetchPriority="high"
+          initial={{ scale: 1.04, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: 'easeOut' }}
-          className="w-full h-full"
-        >
-          <img
-            src="/avurudu-hero.jpg"
-            alt="Avurudu Sarong Collection"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-            fetchPriority="high"
-          />
-        </motion.div>
-        {/* Warm gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-avurudu-dark/90 via-avurudu-dark/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-avurudu-dark/70 via-transparent to-transparent hidden sm:block" />
+          transition={{ duration: 1.8, ease: 'easeOut' }}
+        />
+        {/* Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent hidden sm:block" />
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 lg:px-10 min-h-screen flex flex-col justify-center items-center sm:items-start text-center sm:text-left pt-24 pb-16">
+      <div className="relative z-20 flex flex-col justify-end pb-16 sm:pb-24 px-6 lg:px-16" style={{ minHeight: '100svh' }}>
+        <div className="max-w-2xl">
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.7 }}
+            className="text-[11px] font-medium tracking-[0.35em] uppercase text-white/50 mb-5"
+          >
+            Avurudu Collection — 2026
+          </motion.p>
 
-        {/* Avurudu Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="mb-6"
-        >
-          <span className="badge-avurudu">
-            🪔 &nbsp;Avurudu Collection 2026
-          </span>
-        </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.9 }}
+            className="text-5xl sm:text-6xl md:text-7xl font-light text-white leading-[1.05] mb-3 tracking-tight"
+          >
+            SARINNI
+          </motion.h1>
 
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="text-5xl sm:text-7xl md:text-[88px] font-serif font-bold tracking-tight text-white leading-[1] mb-4 max-w-3xl"
-        >
-          Celebrate{' '}
-          <span className="text-avurudu-saffron italic">Avurudu</span>
-          <br className="hidden sm:block" />
-          <span className="text-white/70 font-normal not-italic text-4xl sm:text-6xl md:text-7xl">in Sarinni.</span>
-        </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="text-white/40 text-sm tracking-[0.2em] mb-2 italic font-light"
+          >
+            අලුත් අවුරුද්ද සුභ වේවා
+          </motion.p>
 
-        {/* Sinhala sub-line */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.75, duration: 1 }}
-          className="text-avurudu-saffron/80 text-lg sm:text-xl font-light tracking-widest mb-4"
-        >
-          අලුත් අවුරුද්ද සුභ වේවා 🌸
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.85, duration: 0.8 }}
+            className="text-white/60 text-sm sm:text-base leading-relaxed max-w-sm mb-10 font-light"
+          >
+            Premium sarongs crafted for the Sri Lankan New Year — where tradition meets modern elegance.
+          </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 1 }}
-          className="text-white/70 text-base sm:text-lg max-w-md mb-10 leading-relaxed font-light"
-        >
-          Our finest sarongs, handcrafted to honour Sri Lanka's most joyous season. Premium fabrics in vibrant festival colours.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0"
-        >
-          <a href="#shop" className="w-full sm:w-auto">
-            <button className="btn-premium w-full sm:w-auto text-sm px-8 py-4">
-              🛍️ &nbsp;Shop Avurudu Collection
-            </button>
-          </a>
-          <a href="#about" className="w-full sm:w-auto">
-            <button className="btn-outline w-full sm:w-auto text-sm px-8 py-4">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.7 }}
+            className="flex flex-col sm:flex-row gap-3"
+          >
+            <a href="#shop" className="btn-primary text-center">
+              Shop Collection
+            </a>
+            <a href="#about" className="inline-flex items-center justify-center px-8 py-3.5 border border-white/30 text-white text-[11px] font-semibold uppercase tracking-[0.15em] hover:bg-white/10 transition-all duration-200">
               Our Story
-            </button>
-          </a>
-        </motion.div>
-
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4, duration: 1 }}
-          className="flex gap-10 mt-16 pt-8 border-t border-white/10"
-        >
-          {[
-            { num: '100%', label: 'Sri Lankan Made' },
-            { num: 'Premium', label: 'Hand-picked Fabrics' },
-            { num: 'Free', label: 'Delivery Island-wide*' },
-          ].map(s => (
-            <div key={s.label} className="text-center sm:text-left">
-              <p className="text-avurudu-saffron font-bold text-lg sm:text-xl">{s.num}</p>
-              <p className="text-white/50 text-[10px] uppercase tracking-widest">{s.label}</p>
-            </div>
-          ))}
-        </motion.div>
+            </a>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll line */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center hidden sm:flex z-20"
+        transition={{ delay: 1.8 }}
+        className="absolute bottom-8 right-8 hidden sm:flex flex-col items-center gap-3 z-20"
       >
-        <span className="text-[10px] uppercase tracking-[0.35em] mb-3 text-white/40 font-medium">Scroll</span>
+        <span className="text-white/30 text-[9px] tracking-[0.3em] uppercase rotate-90 origin-center mb-6">Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-[1px] h-10 bg-gradient-to-b from-avurudu-saffron/60 to-transparent"
+          animate={{ scaleY: [1, 0.3, 1] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-px h-14 bg-gradient-to-b from-white/40 to-transparent origin-top"
         />
       </motion.div>
     </section>
