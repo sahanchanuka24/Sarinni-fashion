@@ -1,76 +1,71 @@
 import React, { useState } from 'react';
-import { Heart, ShoppingBag } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
-  const { addToCart, toggleWishlist, wishlist } = useCart();
+  const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
-  const isWishlisted = wishlist.find(item => item._id === product._id);
 
   const images = Array.isArray(product.images) ? product.images : [];
   const primary   = images[0]?.url || '';
-  const secondary = images[1]?.url || primary;
 
   const handleAdd = (e) => {
     e.preventDefault();
     addToCart(product);
     setAdded(true);
-    setTimeout(() => setAdded(false), 1400);
+    setTimeout(() => setAdded(false), 2000);
   };
 
   return (
-    <div className="group flex flex-col">
-      {/* Image */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#F2F2F2]">
-        {primary && (
-          <>
-            <img src={primary} alt={product.name} loading="lazy" decoding="async"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0" />
-            <img src={secondary} alt={product.name} loading="lazy" decoding="async"
-              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-[1.03] group-hover:scale-100 transition-transform" />
-          </>
-        )}
-        {!primary && (
+    <div className="group flex flex-col h-full bg-white rounded-lg transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-transparent hover:border-gray-100 overflow-hidden">
+      {/* Image Container */}
+      <div className="relative aspect-[4/5] overflow-hidden bg-gray-50">
+        {primary ? (
+          <img 
+            src={primary} 
+            alt={product.name} 
+            loading="lazy" 
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+          />
+        ) : (
           <div className="absolute inset-0 flex items-center justify-center text-gray-300">
             <ShoppingBag size={32} strokeWidth={1} />
           </div>
         )}
-
-        {/* Wishlist */}
-        <button
-          onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
-          className={`absolute top-3 right-3 p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 ${
-            isWishlisted ? 'bg-black text-white' : 'bg-white/90 text-black hover:bg-black hover:text-white'
-          }`}
-        >
-          <Heart size={13} fill={isWishlisted ? 'currentColor' : 'none'} />
-        </button>
-
-        {/* Quick add — bottom bar on hover (desktop) */}
-        <button
-          onClick={handleAdd}
-          className={`absolute bottom-0 left-0 w-full py-3 text-[11px] font-semibold uppercase tracking-[0.15em] transition-all duration-300 hidden sm:flex items-center justify-center gap-2
-            ${added ? 'bg-[#3D7A5C] text-white translate-y-0' : 'bg-black text-white translate-y-full group-hover:translate-y-0'}`}
-        >
-          {added ? '✓ Added' : 'Quick Add'}
-        </button>
       </div>
 
-      {/* Info */}
-      <div className="pt-3 pb-1">
-        <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-1">{product.category}</p>
-        <p className="text-sm font-medium text-gray-900 truncate">{product.name}</p>
-        <p className="text-sm text-gray-500 mt-0.5">LKR {product.price?.toLocaleString()}</p>
+      {/* Product Info & Actions */}
+      <div className="p-4 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-1 gap-2">
+          <p className="text-sm font-semibold text-gray-900 leading-snug">{product.name}</p>
+          <p className="text-sm font-bold text-gray-900 shrink-0">LKR {product.price?.toLocaleString()}</p>
+        </div>
+        
+        <p className="text-[11px] text-gray-500 uppercase tracking-widest mb-4 font-medium">{product.category}</p>
 
-        {/* Mobile add button — always visible */}
-        <button
-          onClick={handleAdd}
-          className={`mt-2.5 w-full py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-all duration-300 sm:hidden ${
-            added ? 'bg-[#3D7A5C] text-white' : 'bg-black text-white'
-          }`}
-        >
-          {added ? '✓ Added' : 'Add to Bag'}
-        </button>
+        {/* Always visible Add to Cart button */}
+        <div className="mt-auto pt-2">
+          <button
+            onClick={handleAdd}
+            className={`w-full py-3 text-xs font-semibold uppercase tracking-widest rounded-md transition-all duration-300 flex items-center justify-center gap-2 ${
+              added 
+                ? 'bg-green-600 text-white' 
+                : 'bg-gray-100 text-black hover:bg-black hover:text-white'
+            }`}
+          >
+            {added ? (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                Added to Bag
+              </>
+            ) : (
+              'Add to Bag'
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
