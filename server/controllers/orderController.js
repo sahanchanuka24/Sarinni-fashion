@@ -18,21 +18,31 @@ exports.newOrder = async (req, res) => {
       user: req.user ? req.user._id : undefined
     });
 
-    // Send Order Confirmation Email asynchronously so it doesn't block the checkout
-    try {
-      const emailUser = req.user || { name: 'Valued Customer' };
-      const emailHtml = getOrderTemplate(order, emailUser);
-      
-      sendEmail({
-        email: shippingInfo.email,
-        subject: `Order Confirmation - Sarinni #${order._id.toString().slice(-8).toUpperCase()}`,
-        html: emailHtml
-      }).catch(emailError => {
-        console.error('Email could not be sent in background:', emailError.message);
-      });
-    } catch (err) {
-      console.error('Error preparing email:', err.message);
-    }
+    // Send Order Confirmation Email — fire & forget (non-blocking)
+    setImmediate(async () => {
+      try {
+        if (!shippingInfo.email) {
+          console.warn('⚠️  No customer email provided — skipping confirmation email.');
+          return;
+        }
+        // For guest checkout, use city as a friendly fallback name
+        const emailUser = req.user || { name: 'Valued Customer' };
+        const emailHtml = getOrderTemplate(order, emailUser);
+
+        await sendEmail({
+          email: shippingInfo.email,
+          subject: `Order Confirmed — Sarinni #${order._id.toString().slice(-8).toUpperCase()} 🌸`,
+          html: emailHtml
+        });
+        console.log(`📧 Confirmation email sent → ${shippingInfo.email}`);
+      } catch (emailError) {
+        // Log full details so we can debug in production without breaking the order
+        console.error('❌ Email send failed:', emailError.message);
+        console.error('   SMTP host:', process.env.SMTP_HOST);
+        console.error('   SMTP user:', process.env.SMTP_USER);
+        console.error('   Recipient:', shippingInfo.email);
+      }
+    });
 
     res.status(201).json({ success: true, order });
   } catch (error) {
