@@ -69,6 +69,7 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto px-6 lg:px-10 flex justify-between items-center">
+          {/* Mobile: left side = hamburger, right side = search + cart */}
           <button
             className="lg:hidden text-premium-black hover:opacity-70 transition-opacity"
             onClick={() => setIsMobileMenuOpen(true)}
@@ -94,7 +95,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="flex items-center justify-end space-x-6 flex-1">
+          <div className="flex items-center justify-end space-x-5 flex-1">
             <button
               onClick={openSearch}
               className="text-premium-black hover:opacity-60 transition-opacity hidden sm:block"
@@ -115,6 +116,14 @@ const Navbar = () => {
                 )}
               </AnimatePresence>
             </Link>
+
+            {/* Search icon visible on mobile too */}
+            <button
+              onClick={openSearch}
+              className="text-premium-black hover:opacity-60 transition-opacity sm:hidden"
+            >
+              <Search size={20} strokeWidth={1.5} />
+            </button>
 
             <button
               onClick={() => setIsCartOpen(true)}
@@ -240,6 +249,34 @@ const Navbar = () => {
                   </a>
                 </motion.div>
               ))}
+
+              {/* Mobile Menu Cart & Search */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+                className="pt-8 flex flex-col items-center gap-4"
+              >
+                <button
+                  onClick={() => { setIsMobileMenuOpen(false); setIsCartOpen(true); }}
+                  className="flex items-center gap-3 px-8 py-3 bg-premium-black text-white rounded-full text-sm font-medium tracking-wide relative"
+                >
+                  <ShoppingBag size={16} />
+                  View Cart
+                  {cartCount > 0 && (
+                    <span className="ml-1 bg-white text-premium-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                      {cartCount}
+                    </span>
+                  )}
+                </button>
+                <Link
+                  to="/wishlist"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2 text-sm text-premium-black/50 hover:text-premium-black transition-colors"
+                >
+                  <Heart size={14} /> Wishlist {wishlistCount > 0 ? `(${wishlistCount})` : ''}
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}

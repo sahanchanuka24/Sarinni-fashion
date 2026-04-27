@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const CartPage = () => {
-  const { cartItems, removeFromCart, addToCart, cartCount, clearCart } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, cartCount, clearCart } = useCart();
   const navigate = useNavigate();
   
   const [showCheckout, setShowCheckout] = useState(false);
@@ -121,29 +121,42 @@ const CartPage = () => {
                     className="space-y-6"
                   >
                     {cartItems.map((item) => (
-                      <div 
+                      <div
                         key={item._id}
-                        className="bg-white p-6 flex items-center shadow-sm"
+                        className="bg-white p-4 sm:p-6 flex items-start sm:items-center gap-4 shadow-sm"
                       >
-                        <img 
-                          src={item.images[0]?.url} 
-                          alt={item.name} 
-                          className="w-24 h-32 object-cover"
+                        <img
+                          src={Array.isArray(item.images) && item.images[0] ? item.images[0].url : 'https://via.placeholder.com/96x128'}
+                          alt={item.name}
+                          className="w-20 h-28 sm:w-24 sm:h-32 object-cover shrink-0"
                         />
-                        <div className="ml-8 flex-grow">
-                          <h3 className="text-xl font-serif text-premium-black">{item.name}</h3>
-                          <p className="text-premium-gold text-sm mb-4">{item.category}</p>
-                          <div className="flex items-center space-x-4">
-                            <span className="text-sm font-medium tracking-widest text-premium-black/40 uppercase">Qty: {item.quantity || 1}</span>
+                        <div className="flex-grow">
+                          <h3 className="text-lg sm:text-xl font-sans font-medium text-premium-black leading-tight">{item.name}</h3>
+                          <p className="text-premium-black/40 text-sm mb-3">{item.category}</p>
+                          {/* Quantity Controls */}
+                          <div className="flex items-center gap-3">
+                            <button
+                              onClick={() => updateQuantity(item._id, -1)}
+                              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-sm font-bold hover:bg-gray-100 transition-colors"
+                            >
+                              −
+                            </button>
+                            <span className="text-sm font-medium w-6 text-center">{item.quantity || 1}</span>
+                            <button
+                              onClick={() => updateQuantity(item._id, 1)}
+                              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-sm font-bold hover:bg-gray-100 transition-colors"
+                            >
+                              +
+                            </button>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <p className="text-lg font-medium mb-4">LKR {(item.price * (item.quantity || 1)).toLocaleString()}</p>
-                          <button 
+                        <div className="text-right shrink-0">
+                          <p className="text-base sm:text-lg font-medium mb-3">LKR {(item.price * (item.quantity || 1)).toLocaleString()}</p>
+                          <button
                             onClick={() => removeFromCart(item._id)}
                             className="text-red-400 hover:text-red-600 transition-colors"
                           >
-                            <Trash2 size={20} />
+                            <Trash2 size={18} />
                           </button>
                         </div>
                       </div>

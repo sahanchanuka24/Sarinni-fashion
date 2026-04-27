@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Trash2, ArrowRight } from 'lucide-react';
+import { X, Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import axios from 'axios';
 
@@ -31,7 +31,7 @@ const CartDrawer = () => {
           name: item.name,
           quantity: item.quantity || 1,
           price: item.price,
-          image: item.images[0]?.url,
+          image: Array.isArray(item.images) && item.images[0] ? item.images[0].url : '',
           product: item._id
         })),
         shippingInfo,
@@ -71,7 +71,7 @@ const CartDrawer = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white shadow-2xl z-[80] flex flex-col"
+            className="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white shadow-2xl z-[80] flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-6 flex justify-between items-center border-b border-black/5 shrink-0">
@@ -113,9 +113,9 @@ const CartDrawer = () => {
                     {cartItems.map((item) => (
                       <div key={item._id} className="flex gap-4 items-center">
                         <img 
-                          src={item.images[0]?.url} 
+                          src={Array.isArray(item.images) && item.images[0] ? item.images[0].url : 'https://via.placeholder.com/80x96'} 
                           alt={item.name} 
-                          className="w-20 h-24 object-cover rounded-md"
+                          className="w-20 h-24 object-cover rounded-md shrink-0"
                         />
                         <div className="flex-1">
                           <h4 className="font-sans font-medium text-sm text-premium-black">{item.name}</h4>

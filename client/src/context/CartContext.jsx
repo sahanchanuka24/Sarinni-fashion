@@ -17,8 +17,8 @@ export const CartProvider = ({ children }) => {
       const savedCart = localStorage.getItem(getCartKey());
       if (savedCart) {
         const parsedCart = JSON.parse(savedCart);
-        const validCart = parsedCart.filter(item => 
-          item._id && typeof item._id === 'string' && item._id.length === 24
+        const validCart = parsedCart.filter(item =>
+          item._id && item.name && item.price
         );
         setCartItems(validCart);
       } else {
@@ -28,8 +28,8 @@ export const CartProvider = ({ children }) => {
       const savedWishlist = localStorage.getItem(getWishlistKey());
       if (savedWishlist) {
         const parsedWishlist = JSON.parse(savedWishlist);
-        const validWishlist = parsedWishlist.filter(item => 
-          item._id && typeof item._id === 'string' && item._id.length === 24
+        const validWishlist = parsedWishlist.filter(item =>
+          item._id && item.name && item.price
         );
         setWishlist(validWishlist);
       } else {
