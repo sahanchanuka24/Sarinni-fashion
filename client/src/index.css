@@ -49,18 +49,13 @@
 /* ── Components ── */
 @layer components {
   /* Primary button — solid black */
-  .btn-primary {
+  .btn-primary, .btn-premium, .btn-dark {
     @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-black text-white text-[11px] font-semibold uppercase tracking-[0.15em] hover:bg-brand-gray active:scale-[0.98] transition-all duration-200;
   }
   /* Ghost button */
-  .btn-ghost {
+  .btn-ghost, .btn-outline {
     @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-brand-black text-brand-black text-[11px] font-semibold uppercase tracking-[0.15em] hover:bg-brand-black hover:text-white active:scale-[0.98] transition-all duration-200;
   }
-
-  /* Legacy aliases */
-  .btn-premium { @apply btn-primary; }
-  .btn-outline  { @apply btn-ghost; }
-  .btn-dark     { @apply btn-primary; }
   .badge-avurudu {
     @apply inline-flex items-center gap-1 px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-[10px] font-semibold uppercase tracking-widest;
   }
