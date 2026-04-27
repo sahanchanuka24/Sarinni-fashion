@@ -11,7 +11,7 @@ const Footer = () => (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8">
       <div>
         <p className="text-lg font-semibold tracking-[0.25em] uppercase text-gray-900 mb-1">Sarinni</p>
-        <p className="text-xs text-gray-400 italic">අලුත් අවුරුද්ද සුභ වේවා 🌸</p>
+        <p className="text-xs text-gray-400">Luxury Men's Essentials</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 text-[11px] text-gray-400 uppercase tracking-widest">
         <a href="#shop" className="hover:text-gray-900 transition-colors">Shop</a>

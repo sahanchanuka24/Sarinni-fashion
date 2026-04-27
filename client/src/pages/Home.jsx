@@ -36,7 +36,7 @@ const Home = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gray-400 mb-2">The Collection</p>
-            <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900">Avurudu 2026</h2>
+            <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-gray-900">New Arrivals</h2>
           </div>
           {!loading && (
             <p className="text-xs text-gray-400">{filtered.length} {filtered.length === 1 ? 'piece' : 'pieces'}</p>
@@ -101,19 +101,16 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left image */}
           <div className="aspect-square lg:aspect-auto lg:min-h-[500px] bg-gray-100 overflow-hidden">
-            <img src="/avurudu-hero.jpg" alt="Sarinni — Avurudu Collection" className="w-full h-full object-cover" loading="lazy" />
+            <img src="/minimal-hero.jpg" alt="Sarinni Brand Story" className="w-full h-full object-cover" loading="lazy" />
           </div>
           {/* Right text */}
           <div className="flex flex-col justify-center px-8 sm:px-16 py-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gray-400 mb-6">Our Story</p>
             <h2 className="text-3xl sm:text-4xl font-light text-gray-900 leading-tight mb-6 tracking-tight">
-              Born from the<br />spirit of Avurudu.
+              Redefining the<br />modern sarong.
             </h2>
-            <p className="text-gray-500 text-sm leading-relaxed mb-4">
-              Every year, Sri Lanka pauses to celebrate new beginnings. Sarinni was created to honour that spirit — premium sarongs that carry the warmth of the Avurudu season, handcrafted with fabrics that celebrate our island's rich cultural heritage.
-            </p>
-            <p className="text-gray-400 text-sm italic mb-10">
-              "අලුත් අවුරුද්ද සුභ වේවා"
+            <p className="text-gray-500 text-sm leading-relaxed mb-10">
+              Sarinni is built on the belief that everyday essentials should be elevated. We focus on premium fabrics, meticulous tailoring, and a minimalist aesthetic that transcends seasons. Designed in Sri Lanka for the contemporary wardrobe.
             </p>
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-100">
               {[
