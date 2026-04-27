@@ -1,50 +1,72 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap');
 
 @theme {
-  --color-premium-cream: #FFFFFF;
-  --color-premium-gold: #8B8B8B;
-  --color-premium-black: #111111;
-  --color-premium-rose: #F5F5F5;
-  --color-premium-sage: #FAFAFA;
+  /* ── Avurudu Edition Palette ── */
+  --color-premium-cream:      #FDF6EC;   /* warm ivory */
+  --color-premium-gold:       #E8A020;   /* Avurudu saffron */
+  --color-premium-black:      #1A1209;   /* warm dark */
+  --color-premium-rose:       #F5E6D3;   /* warm blush section bg */
+  --color-premium-sage:       #3D7A5C;   /* jade green */
+  --color-avurudu-saffron:    #E8A020;
+  --color-avurudu-terracotta: #C0533A;
+  --color-avurudu-jade:       #3D7A5C;
+  --color-avurudu-cream:      #FDF6EC;
+  --color-avurudu-blush:      #F5E6D3;
+  --color-avurudu-dark:       #1A1209;
 
-  --font-serif: "Inter", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", sans-serif;
 
-  --animate-fade-in: fadeIn 1s ease-out;
+  --animate-fade-in:  fadeIn 1s ease-out;
   --animate-slide-up: slideUp 0.8s ease-out;
+  --animate-float:    floatAnim 4s ease-in-out infinite;
+  --animate-shimmer:  shimmer 2.5s ease-in-out infinite;
 
   @keyframes fadeIn {
-    0% { opacity: 0; }
+    0%   { opacity: 0; }
     100% { opacity: 1; }
   }
   @keyframes slideUp {
-    0% { transform: translateY(20px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+    0%   { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0);    opacity: 1; }
+  }
+  @keyframes floatAnim {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50%       { transform: translateY(-12px) rotate(3deg); }
+  }
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 1; }
+  }
+  @keyframes petals {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(232, 160, 32, 0.3); }
+    50%       { box-shadow: 0 0 40px rgba(232, 160, 32, 0.7); }
   }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Prevent horizontal overflow on mobile */
     overflow-x: hidden;
   }
   body {
-    @apply bg-white text-premium-black font-sans antialiased;
+    @apply bg-avurudu-cream text-avurudu-dark font-sans antialiased;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Prevent content shifting when cart opens */
     overscroll-behavior-y: none;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans tracking-tight;
   }
 
-  /* Better touch on mobile */
   button, a {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
@@ -52,34 +74,64 @@
 }
 
 @layer components {
+  /* Primary CTA — Avurudu saffron */
   .btn-premium {
-    @apply px-10 py-3.5 bg-premium-black text-white hover:bg-black active:scale-[0.98] transition-transform duration-300 ease-out font-medium rounded-full shadow-md hover:shadow-lg text-sm tracking-wide;
+    @apply px-10 py-3.5 bg-avurudu-saffron text-white hover:bg-avurudu-terracotta active:scale-[0.98] transition-all duration-300 ease-out font-semibold rounded-full shadow-md hover:shadow-lg text-sm tracking-wide;
   }
-  
+
   .btn-outline {
-    @apply px-10 py-3.5 border border-premium-black/20 text-premium-black hover:border-premium-black active:scale-[0.98] transition-all duration-300 ease-out font-medium rounded-full bg-white text-sm tracking-wide;
+    @apply px-10 py-3.5 border-2 border-avurudu-saffron text-avurudu-saffron hover:bg-avurudu-saffron hover:text-white active:scale-[0.98] transition-all duration-300 ease-out font-semibold rounded-full bg-transparent text-sm tracking-wide;
   }
-  
+
+  .btn-dark {
+    @apply px-10 py-3.5 bg-avurudu-dark text-avurudu-cream hover:bg-avurudu-jade active:scale-[0.98] transition-all duration-300 ease-out font-medium rounded-full shadow-md text-sm tracking-wide;
+  }
+
   .link-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-premium-black after:transition-all after:duration-300 hover:after:w-full;
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-avurudu-saffron after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  /* Gold decorative divider */
+  .divider-avurudu {
+    @apply flex items-center gap-4 my-8;
+  }
+  .divider-avurudu::before,
+  .divider-avurudu::after {
+    content: '';
+    @apply flex-1 h-px bg-gradient-to-r from-transparent via-avurudu-saffron/40 to-transparent;
+  }
+
+  /* Avurudu festive badge */
+  .badge-avurudu {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 bg-avurudu-saffron/10 border border-avurudu-saffron/30 text-avurudu-saffron text-[10px] font-semibold uppercase tracking-widest rounded-full;
+  }
+
+  /* Card with warm hover */
+  .card-warm {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 border border-avurudu-saffron/5 hover:border-avurudu-saffron/20;
   }
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-premium-cream);
-}
-
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-avurudu-cream); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(17, 17, 17, 0.1);
+  background: rgba(232, 160, 32, 0.25);
   border-radius: 10px;
-  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 160, 32, 0.5);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(17, 17, 17, 0.3);
+/* Floating petal animation utility */
+.petal {
+  animation: petals linear infinite;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Glow for lamp/icon elements */
+.glow-gold {
+  animation: glow 2.5s ease-in-out infinite;
 }

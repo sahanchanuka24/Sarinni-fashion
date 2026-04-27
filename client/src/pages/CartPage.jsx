@@ -71,14 +71,14 @@ const CartPage = () => {
 
   if (orderSuccess) {
     return (
-      <div className="pt-32 bg-premium-cream min-h-screen flex items-center justify-center">
+      <div className="pt-32 bg-avurudu-cream min-h-screen flex items-center justify-center">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="bg-white p-12 shadow-sm text-center max-w-lg mx-6"
         >
           <div className="flex justify-center mb-6">
-            <CheckCircle size={80} className="text-premium-gold" strokeWidth={1} />
+            <CheckCircle size={80} className="text-avurudu-jade" strokeWidth={1} />
           </div>
           <h2 className="text-4xl font-serif text-premium-black mb-4">Order Confirmed</h2>
           <p className="text-premium-black/60 mb-8 leading-relaxed">
@@ -93,9 +93,9 @@ const CartPage = () => {
   }
 
   return (
-    <div className="pt-32 bg-premium-cream min-h-screen pb-20">
+    <div className="pt-28 bg-avurudu-cream min-h-screen pb-20">
       <div className="container mx-auto px-6">
-        <h1 className="text-5xl font-serif text-premium-black mb-12">Shopping Bag</h1>
+        <h1 className="text-4xl sm:text-5xl font-serif text-avurudu-dark mb-10">Shopping Bag 🛍️</h1>
 
         {cartItems.length === 0 ? (
           <div className="text-center py-20 bg-white shadow-sm p-10">
@@ -195,7 +195,7 @@ const CartPage = () => {
                           name="email"
                           value={shippingInfo.email}
                           onChange={handleInputChange}
-                          className="w-full bg-premium-cream/30 border-b border-premium-black/10 py-3 px-4 focus:border-premium-gold outline-none transition-colors"
+                          className="w-full bg-avurudu-cream/30 border-b border-avurudu-saffron/20 py-3 px-4 focus:border-avurudu-saffron outline-none transition-colors"
                           placeholder="customer@example.com"
                         />
                       </div>
@@ -206,7 +206,7 @@ const CartPage = () => {
                           name="address"
                           value={shippingInfo.address}
                           onChange={handleInputChange}
-                          className="w-full bg-premium-cream/30 border-b border-premium-black/10 py-3 px-4 focus:border-premium-gold outline-none transition-colors"
+                          className="w-full bg-avurudu-cream/30 border-b border-avurudu-saffron/20 py-3 px-4 focus:border-avurudu-saffron outline-none transition-colors"
                           placeholder="No. 123, Luxury Road"
                         />
                       </div>
@@ -217,7 +217,7 @@ const CartPage = () => {
                           name="city"
                           value={shippingInfo.city}
                           onChange={handleInputChange}
-                          className="w-full bg-premium-cream/30 border-b border-premium-black/10 py-3 px-4 focus:border-premium-gold outline-none transition-colors"
+                          className="w-full bg-avurudu-cream/30 border-b border-avurudu-saffron/20 py-3 px-4 focus:border-avurudu-saffron outline-none transition-colors"
                           placeholder="Colombo"
                         />
                       </div>
@@ -228,7 +228,7 @@ const CartPage = () => {
                           name="phoneNo"
                           value={shippingInfo.phoneNo}
                           onChange={handleInputChange}
-                          className="w-full bg-premium-cream/30 border-b border-premium-black/10 py-3 px-4 focus:border-premium-gold outline-none transition-colors"
+                          className="w-full bg-avurudu-cream/30 border-b border-avurudu-saffron/20 py-3 px-4 focus:border-avurudu-saffron outline-none transition-colors"
                           placeholder="077 123 4567"
                         />
                       </div>
@@ -239,7 +239,7 @@ const CartPage = () => {
                           name="postalCode"
                           value={shippingInfo.postalCode}
                           onChange={handleInputChange}
-                          className="w-full bg-premium-cream/30 border-b border-premium-black/10 py-3 px-4 focus:border-premium-gold outline-none transition-colors"
+                          className="w-full bg-avurudu-cream/30 border-b border-avurudu-saffron/20 py-3 px-4 focus:border-avurudu-saffron outline-none transition-colors"
                           placeholder="10100"
                         />
                       </div>
@@ -269,7 +269,7 @@ const CartPage = () => {
 
             {/* Right Column: Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-premium-black text-premium-cream p-8 sticky top-32">
+              <div className="bg-avurudu-dark text-white p-8 sticky top-32">
                 <h3 className="text-2xl font-serif mb-8">Summary</h3>
                 <div className="space-y-4 mb-8 text-premium-cream/70">
                   <div className="flex justify-between">
@@ -290,7 +290,7 @@ const CartPage = () => {
                 {!showCheckout && (
                   <button 
                     onClick={() => setShowCheckout(true)}
-                    className="w-full py-4 bg-premium-gold text-premium-cream hover:bg-white hover:text-premium-black transition-all duration-300 font-medium tracking-widest uppercase"
+                    className="w-full py-4 bg-avurudu-saffron text-white hover:bg-avurudu-terracotta transition-all duration-300 font-semibold tracking-widest uppercase rounded-lg"
                   >
                     Proceed to Checkout
                   </button>

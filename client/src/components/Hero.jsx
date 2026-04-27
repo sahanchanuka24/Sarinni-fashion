@@ -1,85 +1,163 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+// Floating petal component
+const Petal = ({ style, emoji }) => (
+  <span
+    className="petal select-none pointer-events-none text-2xl"
+    style={style}
+  >
+    {emoji}
+  </span>
+);
+
 const Hero = () => {
+  const [petals, setPetals] = useState([]);
+
+  useEffect(() => {
+    const items = ['🌸', '🌼', '🪷', '✨', '🌺', '🍀'];
+    const generated = Array.from({ length: 14 }, (_, i) => ({
+      id: i,
+      emoji: items[i % items.length],
+      style: {
+        left: `${Math.random() * 100}%`,
+        top: `-${Math.random() * 10 + 2}%`,
+        fontSize: `${Math.random() * 16 + 14}px`,
+        animationDuration: `${Math.random() * 8 + 7}s`,
+        animationDelay: `${Math.random() * 6}s`,
+        opacity: Math.random() * 0.5 + 0.3,
+      },
+    }));
+    setPetals(generated);
+  }, []);
+
   return (
-    <section className="relative h-screen w-full bg-white overflow-hidden">
-      {/* Background Image - Clean minimalist fashion aesthetic */}
+    <section className="relative min-h-screen w-full overflow-hidden bg-avurudu-dark">
+      {/* Floating petals */}
+      <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
+        {petals.map(p => <Petal key={p.id} {...p} />)}
+      </div>
+
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <motion.div
-          initial={{ scale: 1.05, opacity: 0 }}
+          initial={{ scale: 1.08, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 2, ease: 'easeOut' }}
           className="w-full h-full"
         >
-          <img 
-            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop" 
-            alt="Premium Minimalist Fashion" 
+          <img
+            src="/avurudu-hero.jpg"
+            alt="Avurudu Sarong Collection"
             className="w-full h-full object-cover object-center"
             loading="eager"
             fetchPriority="high"
-            decoding="async"
           />
         </motion.div>
-        {/* Soft overlay gradient to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent sm:bg-gradient-to-r sm:from-white/90 sm:via-white/50 sm:to-transparent"></div>
+        {/* Warm gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-avurudu-dark/90 via-avurudu-dark/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-avurudu-dark/70 via-transparent to-transparent hidden sm:block" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center sm:justify-center items-center sm:items-start text-center sm:text-left mt-10 sm:mt-0">
+      <div className="relative z-20 container mx-auto px-6 lg:px-10 min-h-screen flex flex-col justify-center items-center sm:items-start text-center sm:text-left pt-24 pb-16">
+
+        {/* Avurudu Badge */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="overflow-hidden mb-6"
+          className="mb-6"
         >
-          <span className="text-premium-black/60 font-semibold tracking-[0.5em] uppercase text-[10px] sm:text-xs">
-            Essential Resort Wear
+          <span className="badge-avurudu">
+            🪔 &nbsp;Avurudu Collection 2026
           </span>
         </motion.div>
-        
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
+
+        {/* Main Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-6xl sm:text-7xl md:text-[100px] font-sans font-bold tracking-tighter text-premium-black leading-[0.9] mb-8 max-w-4xl"
+          className="text-5xl sm:text-7xl md:text-[88px] font-serif font-bold tracking-tight text-white leading-[1] mb-4 max-w-3xl"
         >
-          THE MODERN<br className="hidden sm:block" />
-          <span className="text-premium-black/20">SARONG.</span>
+          Celebrate{' '}
+          <span className="text-avurudu-saffron italic">Avurudu</span>
+          <br className="hidden sm:block" />
+          <span className="text-white/70 font-normal not-italic text-4xl sm:text-6xl md:text-7xl">in Sarinni.</span>
         </motion.h1>
 
-        <motion.p 
+        {/* Sinhala sub-line */}
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 1 }}
-          className="text-base sm:text-lg text-premium-black/70 max-w-md mb-12 leading-relaxed font-light"
+          transition={{ delay: 0.75, duration: 1 }}
+          className="text-avurudu-saffron/80 text-lg sm:text-xl font-light tracking-widest mb-4"
         >
-          Redefining tropical luxury through clean lines, premium fabrics, and uncompromising minimalist aesthetics.
+          අලුත් අවුරුද්ද සුභ වේවා 🌸
         </motion.p>
 
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9, duration: 1 }}
+          className="text-white/70 text-base sm:text-lg max-w-md mb-10 leading-relaxed font-light"
+        >
+          Our finest sarongs, handcrafted to honour Sri Lanka's most joyous season. Premium fabrics in vibrant festival colours.
+        </motion.p>
+
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 w-full sm:w-auto px-4 sm:px-0"
+          transition={{ delay: 1.1, duration: 0.8 }}
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0"
         >
           <a href="#shop" className="w-full sm:w-auto">
-            <button className="btn-premium w-full sm:w-auto">
-              Shop Collection
+            <button className="btn-premium w-full sm:w-auto text-sm px-8 py-4">
+              🛍️ &nbsp;Shop Avurudu Collection
+            </button>
+          </a>
+          <a href="#about" className="w-full sm:w-auto">
+            <button className="btn-outline w-full sm:w-auto text-sm px-8 py-4">
+              Our Story
             </button>
           </a>
         </motion.div>
+
+        {/* Stats bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 1 }}
+          className="flex gap-10 mt-16 pt-8 border-t border-white/10"
+        >
+          {[
+            { num: '100%', label: 'Sri Lankan Made' },
+            { num: 'Premium', label: 'Hand-picked Fabrics' },
+            { num: 'Free', label: 'Delivery Island-wide*' },
+          ].map(s => (
+            <div key={s.label} className="text-center sm:text-left">
+              <p className="text-avurudu-saffron font-bold text-lg sm:text-xl">{s.num}</p>
+              <p className="text-white/50 text-[10px] uppercase tracking-widest">{s.label}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
+      {/* Scroll indicator */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center hidden sm:flex"
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center hidden sm:flex z-20"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] mb-4 text-premium-black/40 font-medium">Scroll</span>
-        <div className="w-[1px] h-12 bg-premium-black/20"></div>
+        <span className="text-[10px] uppercase tracking-[0.35em] mb-3 text-white/40 font-medium">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-[1px] h-10 bg-gradient-to-b from-avurudu-saffron/60 to-transparent"
+        />
       </motion.div>
     </section>
   );

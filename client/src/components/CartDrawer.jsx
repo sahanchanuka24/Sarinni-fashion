@@ -75,10 +75,12 @@ const CartDrawer = () => {
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white shadow-2xl z-[80] flex flex-col overflow-hidden"
           >
-            {/* Header */}
-            <div className="p-6 flex justify-between items-center border-b border-black/5 shrink-0">
-              <h2 className="text-xl font-sans font-semibold tracking-tight">Your Cart ({cartCount})</h2>
-              <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <div className="p-5 flex justify-between items-center border-b border-avurudu-saffron/10 shrink-0 bg-white">
+              <div>
+                <h2 className="text-lg font-serif font-bold tracking-tight text-avurudu-dark">Your Cart</h2>
+                <p className="text-avurudu-saffron text-[10px] font-semibold uppercase tracking-widest">{cartCount} {cartCount === 1 ? 'item' : 'items'}</p>
+              </div>
+              <button onClick={() => setIsCartOpen(false)} className="p-2 hover:bg-avurudu-blush rounded-full transition-colors text-avurudu-dark">
                 <X size={20} />
               </button>
             </div>
@@ -105,9 +107,10 @@ const CartDrawer = () => {
                   </button>
                 </div>
               ) : cartItems.length === 0 ? (
-                <div className="flex-1 flex flex-col items-center justify-center text-center text-gray-400">
-                  <ShoppingBag size={48} strokeWidth={1} className="mb-4 opacity-50" />
-                  <p>Your cart is empty</p>
+                <div className="flex-1 flex flex-col items-center justify-center text-center text-avurudu-dark/40">
+                  <ShoppingBag size={48} strokeWidth={1} className="mb-4 opacity-30 text-avurudu-saffron" />
+                  <p className="font-medium">Your cart is empty</p>
+                  <p className="text-xs mt-1">Add some beautiful sarongs 🌸</p>
                 </div>
               ) : (
                 <>
@@ -163,7 +166,7 @@ const CartDrawer = () => {
                           required
                           value={shippingInfo.email}
                           onChange={(e) => setShippingInfo({...shippingInfo, email: e.target.value})}
-                          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-premium-black/20 text-sm transition-all"
+                          className="w-full px-4 py-2.5 bg-avurudu-cream/50 border border-avurudu-saffron/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-avurudu-saffron/30 text-sm transition-all"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -225,7 +228,7 @@ const CartDrawer = () => {
                       <button 
                         type="submit" 
                         disabled={isProcessing}
-                        className="w-full btn-premium flex items-center justify-center gap-2 mt-6"
+                        className="w-full btn-premium flex items-center justify-center gap-2 mt-4"
                       >
                         {isProcessing ? (
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
