@@ -57,10 +57,6 @@ const Navbar = () => {
               <Search size={20} strokeWidth={1.5} />
             </button>
 
-            <a href="/admin-dashboard-flipora" className="text-gray-600 hover:text-black transition-colors" title="Admin Dashboard">
-              <User size={20} strokeWidth={1.5} />
-            </a>
-
             <button onClick={() => setIsCartOpen(true)} className="relative text-gray-800 hover:text-black transition-colors flex items-center gap-2">
               <ShoppingBag size={20} strokeWidth={1.5} />
               <AnimatePresence>
@@ -128,7 +124,7 @@ const Navbar = () => {
               <button onClick={() => setIsMobileOpen(false)} className="text-gray-500 hover:text-black"><X size={24} strokeWidth={1.5} /></button>
             </div>
             <nav className="flex flex-col p-6 gap-2">
-              {[['Shop', '#shop'], ['About', '#about'], ['Admin Dashboard', '/admin-dashboard-flipora']].map(([name, href]) => (
+              {[['Shop', '#shop'], ['About', '#about']].map(([name, href]) => (
                 <a key={name} href={href} onClick={() => setIsMobileOpen(false)}
                   className="py-4 text-sm font-semibold tracking-widest uppercase border-b border-gray-50 text-gray-800 hover:text-black transition-colors flex justify-between items-center">
                   {name}
