@@ -15,6 +15,8 @@ const CartDrawer = () => {
   });
 
   const subtotal = cartItems.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0);
+  const shippingPrice = cartItems.length > 0 ? 450 : 0;
+  const totalPrice = subtotal + shippingPrice;
 
   const handleCheckout = async (e) => {
     e.preventDefault();
@@ -32,8 +34,8 @@ const CartDrawer = () => {
         shippingInfo,
         paymentInfo: { method: 'cash_on_delivery', status: 'pending' },
         itemsPrice: subtotal,
-        shippingPrice: 0,
-        totalPrice: subtotal
+        shippingPrice,
+        totalPrice
       };
 
       // Add a 10s timeout so it doesn't hang forever
