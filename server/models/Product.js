@@ -18,13 +18,13 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please select category for this product'],
     enum: {
-      values: ['Silk', 'Cotton', 'Batik', 'Handloom', 'Premium', 'Resort Wear', 'Bridal', 'Party Wear'],
+      values: ['Insulated', 'Glass', 'Plastic', 'Adventure', 'Lifestyle'],
       message: 'Please select correct category'
     }
   },
-  fabric: {
+  material: {
     type: String,
-    required: [true, 'Please enter fabric type']
+    required: [true, 'Please enter material type']
   },
   color: {
     type: String,

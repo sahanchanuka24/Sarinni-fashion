@@ -7,11 +7,11 @@ import {
 } from 'lucide-react';
 
 const EMPTY_PRODUCT = {
-  name: '', description: '', price: '', category: 'Silk',
-  fabric: '', color: '', stock: 1, imageUrl: ''
+  name: '', description: '', price: '', category: 'Insulated',
+  material: '', color: '', stock: 1, imageUrl: ''
 };
 
-const CATEGORIES = ['Silk', 'Cotton', 'Batik', 'Handloom', 'Premium', 'Resort Wear', 'Bridal', 'Party Wear'];
+const CATEGORIES = ['Insulated', 'Glass', 'Plastic', 'Adventure', 'Lifestyle'];
 
 const inputCls = "w-full bg-white border border-gray-200 py-2.5 px-3 text-sm outline-none focus:border-gray-800 transition-colors";
 const labelCls = "block text-[10px] font-semibold uppercase tracking-widest text-gray-400 mb-1.5";
@@ -80,8 +80,8 @@ const AdminDashboard = () => {
       name: product.name || '',
       description: product.description || '',
       price: product.price || '',
-      category: product.category || 'Silk',
-      fabric: product.fabric || '',
+      category: product.category || 'Insulated',
+      material: product.material || '',
       color: product.color || '',
       stock: product.stock || 1,
       imageUrl: product.images?.[0]?.url || ''
@@ -241,7 +241,7 @@ const AdminDashboard = () => {
                           className="w-10 h-14 object-cover bg-gray-100 flex-shrink-0" />
                         <div>
                           <p className="text-sm font-medium text-gray-900">{product.name}</p>
-                          <p className="text-[10px] text-gray-400 uppercase tracking-wider">{product.fabric}</p>
+                          <p className="text-[10px] text-gray-400 uppercase tracking-wider">{product.material}</p>
                         </div>
                       </div>
                     </td>
@@ -330,9 +330,9 @@ const AdminDashboard = () => {
                   </div>
 
                   <div>
-                    <label className={labelCls}>Fabric</label>
-                    <input type="text" className={inputCls} placeholder="e.g. Pure Silk" value={productForm.fabric}
-                      onChange={e => setProductForm({...productForm, fabric: e.target.value})} />
+                    <label className={labelCls}>Material</label>
+                    <input type="text" className={inputCls} placeholder="e.g. Stainless Steel" value={productForm.material}
+                      onChange={e => setProductForm({...productForm, material: e.target.value})} />
                   </div>
 
                   <div>

@@ -223,9 +223,19 @@ const CartDrawer = () => {
             {/* Footer — only show when cart has items and on cart step */}
             {step === 'cart' && cartItems.length > 0 && (
               <div className="border-t border-gray-100 px-6 py-5 bg-white">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">Subtotal</span>
-                  <span className="text-sm font-semibold text-gray-900">LKR {subtotal.toLocaleString()}</span>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center text-xs tracking-widest text-gray-500">
+                    <span>Subtotal</span>
+                    <span>LKR {subtotal.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-xs tracking-widest text-gray-500">
+                    <span>Delivery Fee</span>
+                    <span>LKR {shippingPrice.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center pt-2 border-t border-gray-50">
+                    <span className="text-xs uppercase tracking-widest text-gray-900 font-bold">Total</span>
+                    <span className="text-sm font-bold text-gray-900">LKR {totalPrice.toLocaleString()}</span>
+                  </div>
                 </div>
                 <button
                   onClick={() => { setCheckoutError(''); setStep('checkout'); }}
@@ -233,7 +243,7 @@ const CartDrawer = () => {
                 >
                   Proceed to Checkout <ArrowRight size={14} />
                 </button>
-                <p className="text-center text-[10px] text-gray-400 mt-2">Cash on Delivery · Island-wide Delivery</p>
+                <p className="text-center text-[10px] text-gray-400 mt-2">Cash on Delivery · Standard 450 LKR Delivery</p>
               </div>
             )}
           </motion.div>
