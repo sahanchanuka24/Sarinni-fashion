@@ -17,7 +17,7 @@ const Navbar = () => {
     setTimeout(() => searchRef.current?.focus(), 80);
     if (!allProducts.length) {
       try { const { data } = await axios.get('/products'); setAllProducts(data.products || []); }
-      catch {}
+      catch { }
     }
   }, [allProducts]);
 
@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const results = searchQuery.trim().length > 1
     ? allProducts.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (p.category || '').toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 8)
+      (p.category || '').toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 8)
     : [];
 
   return (
@@ -56,9 +56,7 @@ const Navbar = () => {
             <button onClick={openSearch} className="text-gray-600 hover:text-black transition-colors hidden sm:block">
               <Search size={20} strokeWidth={1.5} />
             </button>
-            <a href="/admin-dashboard-sarinni" className="text-gray-600 hover:text-black transition-colors hidden sm:block">
-              <User size={20} strokeWidth={1.5} />
-            </a>
+
             <button onClick={() => setIsCartOpen(true)} className="relative text-gray-800 hover:text-black transition-colors flex items-center gap-2">
               <ShoppingBag size={20} strokeWidth={1.5} />
               <AnimatePresence>

@@ -1,4 +1,16 @@
-@import "tailwindcss";
+/* ── Tailwind v4 — explicit layer imports (required for Vercel cold builds) ──
+   DO NOT use the `@import "tailwindcss"` shorthand. That single-line form can
+   cause `@layer components` to be evaluated before utilities are registered in
+   a clean CI/Vercel environment, triggering:
+     "Error: Cannot apply unknown utility class: btn-primary"
+   The three explicit imports below guarantee the correct resolution order:
+     1. theme   → CSS custom properties from @theme are available
+     2. preflight → browser reset is applied
+     3. utilities → all atomic utility classes are registered BEFORE @layer components
+*/
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,300&display=swap');
 
