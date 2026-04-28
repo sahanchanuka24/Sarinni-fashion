@@ -7,7 +7,7 @@ import axios from 'axios'
 
 // Set default axios base URL for all requests
 const isProduction = import.meta.env.PROD;
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || (isProduction ? 'https://flipora-production.up.railway.app/api' : 'http://localhost:5050/api');
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || (isProduction ? 'https://sarinni-fashion-production.up.railway.app/api' : 'http://localhost:5050/api');
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

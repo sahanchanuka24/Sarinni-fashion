@@ -57,6 +57,10 @@ const Navbar = () => {
               <Search size={20} strokeWidth={1.5} />
             </button>
 
+            <a href="/admin-dashboard-flipora" className="text-gray-600 hover:text-black transition-colors" title="Admin Dashboard">
+              <User size={20} strokeWidth={1.5} />
+            </a>
+
             <button onClick={() => setIsCartOpen(true)} className="relative text-gray-800 hover:text-black transition-colors flex items-center gap-2">
               <ShoppingBag size={20} strokeWidth={1.5} />
               <AnimatePresence>
