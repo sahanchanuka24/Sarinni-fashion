@@ -101,22 +101,22 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left image */}
           <div className="aspect-square lg:aspect-auto lg:min-h-[500px] bg-gray-100 overflow-hidden">
-            <img src="/minimal-hero.jpg" alt="Sarinni Brand Story" className="w-full h-full object-cover" loading="lazy" />
+            <img src="/flipora-hero.png" alt="Flipora Brand Story" className="w-full h-full object-cover" loading="lazy" />
           </div>
           {/* Right text */}
           <div className="flex flex-col justify-center px-8 sm:px-16 py-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gray-400 mb-6">Our Story</p>
             <h2 className="text-3xl sm:text-4xl font-light text-gray-900 leading-tight mb-6 tracking-tight">
-              Redefining the<br />modern sarong.
+              Redefining<br />modern hydration.
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed mb-10">
-              Sarinni is built on the belief that everyday essentials should be elevated. We focus on premium fabrics, meticulous tailoring, and a minimalist aesthetic that transcends seasons. Designed in Sri Lanka for the contemporary wardrobe.
+              Flipora is built on the belief that hydration should be effortless and elegant. We focus on high-performance materials, vacuum-sealed technology, and a minimalist aesthetic that fits every journey. Designed for those who never stop moving.
             </p>
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-100">
               {[
-                { label: 'Craftsmanship', desc: 'Sri Lankan made' },
-                { label: 'Fabrics', desc: 'Premium selected' },
-                { label: 'Delivery', desc: 'Island-wide' },
+                { label: 'Insulation', desc: '24h cold / 12h hot' },
+                { label: 'Materials', desc: '316 Stainless Steel' },
+                { label: 'Eco-Friendly', desc: 'BPA Free & Reusable' },
               ].map(f => (
                 <div key={f.label}>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-900 mb-1">{f.label}</p>

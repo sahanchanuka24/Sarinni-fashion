@@ -10,15 +10,15 @@ const Footer = () => (
   <footer className="border-t border-gray-100 px-6 lg:px-12 py-12">
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8">
       <div>
-        <p className="text-lg font-semibold tracking-[0.25em] uppercase text-gray-900 mb-1">Sarinni</p>
-        <p className="text-xs text-gray-400">Luxury Men's Essentials</p>
+        <p className="text-lg font-semibold tracking-[0.25em] uppercase text-gray-900 mb-1">Flipora</p>
+        <p className="text-xs text-gray-400">Premium Hydration Essentials</p>
       </div>
       <div className="flex flex-col sm:flex-row gap-6 sm:gap-10 text-[11px] text-gray-400 uppercase tracking-widest">
         <a href="#shop" className="hover:text-gray-900 transition-colors">Shop</a>
         <a href="#about" className="hover:text-gray-900 transition-colors">About</a>
-        <a href="mailto:fashionsarini@gmail.com" className="hover:text-gray-900 transition-colors">Contact</a>
+        <a href="mailto:hello@flipora.com" className="hover:text-gray-900 transition-colors">Contact</a>
       </div>
-      <p className="text-[11px] text-gray-300">© 2026 Sarinni · Sri Lanka</p>
+      <p className="text-[11px] text-gray-300">© 2026 Flipora · High-Performance Hydration</p>
     </div>
   </footer>
 );
@@ -32,7 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/admin-dashboard-sarinni" element={<AdminDashboard />} />
+          <Route path="/admin-dashboard-flipora" element={<AdminDashboard />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

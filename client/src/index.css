@@ -17,14 +17,14 @@
 @theme {
   --color-brand-black:  #0F0F0F;
   --color-brand-white:  #FFFFFF;
-  --color-brand-cream:  #F8F6F2;
+  --color-brand-ice:    #F5F9FA;
   --color-brand-gray:   #6B6B6B;
   --color-brand-light:  #F2F2F2;
-  --color-brand-gold:   #C9A84C;
+  --color-brand-blue:   #007BFF;
 
   /* Legacy aliases (used by admin/cart pages) */
-  --color-premium-cream:  #F8F6F2;
-  --color-premium-gold:   #C9A84C;
+  --color-premium-cream:  #F5F9FA;
+  --color-premium-gold:   #007BFF;
   --color-premium-black:  #0F0F0F;
   --color-premium-rose:   #F2F2F2;
   --color-avurudu-cream:  #F8F6F2;

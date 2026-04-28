@@ -30,7 +30,7 @@ const Collections = () => {
       >
         <h1 className="text-5xl font-serif text-premium-black mb-4">All Collections</h1>
         <p className="text-premium-black/60 max-w-2xl">
-          Explore our entire range of handcrafted sarongs, from traditional batik to modern resort wear.
+          Explore our entire range of high-performance water bottles, from minimalist designs to rugged adventure-ready vessels.
         </p>
       </motion.div>
       

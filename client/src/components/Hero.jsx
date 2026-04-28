@@ -6,8 +6,8 @@ const Hero = () => {
     <section className="relative w-full bg-gray-50 pt-16" style={{ minHeight: '80svh' }}>
       <div className="absolute inset-0 z-0">
         <img
-          src="/minimal-hero.jpg"
-          alt="Sarinni New Collection"
+          src="/flipora-hero.png"
+          alt="Flipora Premium Hydration"
           className="w-full h-full object-cover object-center"
           loading="eager"
           fetchPriority="high"
@@ -24,7 +24,7 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="text-xs font-semibold tracking-[0.25em] uppercase text-gray-500 mb-4"
           >
-            New Arrivals
+            The Future of Hydration
           </motion.p>
 
           <motion.h1
@@ -33,7 +33,7 @@ const Hero = () => {
             transition={{ delay: 0.1, duration: 0.7 }}
             className="text-5xl sm:text-6xl lg:text-7xl font-light text-black leading-[1.1] mb-6 tracking-tight"
           >
-            Redefining<br />Everyday Luxury.
+            Performance<br />Meets Purity.
           </motion.h1>
 
           <motion.p
@@ -42,7 +42,7 @@ const Hero = () => {
             transition={{ delay: 0.25, duration: 0.7 }}
             className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-md mb-10 font-light"
           >
-            Discover our latest collection of premium men's sarongs. Crafted from exceptional fabrics with meticulous attention to detail.
+            Experience premium hydration with Flipora. High-performance stainless steel bottles designed for the contemporary lifestyle.
           </motion.p>
 
           <motion.div
@@ -52,10 +52,10 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <a href="#shop" className="btn-primary shadow-lg shadow-black/10 hover:shadow-black/20 text-center">
-              Shop Men
+              Shop Collection
             </a>
             <a href="#about" className="btn-ghost text-center bg-white/50 backdrop-blur-sm">
-              Discover Our Story
+              Our Technology
             </a>
           </motion.div>
         </div>

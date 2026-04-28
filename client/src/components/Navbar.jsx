@@ -48,7 +48,7 @@ const Navbar = () => {
 
           {/* Center — Logo */}
           <a href="/" className="text-2xl font-bold tracking-[0.2em] uppercase text-black flex-shrink-0 text-center">
-            Sarinni
+            Flipora
           </a>
 
           {/* Right — Icons */}
@@ -124,7 +124,7 @@ const Navbar = () => {
               <button onClick={() => setIsMobileOpen(false)} className="text-gray-500 hover:text-black"><X size={24} strokeWidth={1.5} /></button>
             </div>
             <nav className="flex flex-col p-6 gap-2">
-              {[['Shop', '#shop'], ['About', '#about'], ['Admin Dashboard', '/admin-dashboard-sarinni']].map(([name, href]) => (
+              {[['Shop', '#shop'], ['About', '#about'], ['Admin Dashboard', '/admin-dashboard-flipora']].map(([name, href]) => (
                 <a key={name} href={href} onClick={() => setIsMobileOpen(false)}
                   className="py-4 text-sm font-semibold tracking-widest uppercase border-b border-gray-50 text-gray-800 hover:text-black transition-colors flex justify-between items-center">
                   {name}
