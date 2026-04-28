@@ -28,6 +28,16 @@ const products = [
     stock: 50
   },
   {
+    name: 'Cactus Love Insulated Bottle - Mint Green',
+    description: 'Refresh your hydration ritual with this soothing Mint Green bottle. Features the signature "Cactus LOVE" illustration and premium vacuum insulation. Price: 650 LKR (+ 450 LKR delivery).',
+    price: 650,
+    category: 'Insulated',
+    material: 'Matte Stainless Steel',
+    color: 'Mint Green',
+    images: [{ url: '/products/cactus-mint.jpg' }],
+    stock: 50
+  },
+  {
     name: 'Flipora Pro Adventure - Ocean Blue',
     description: 'The ultimate adventure companion. Rugged, double-walled vacuum insulation for extreme durability.',
     price: 1200,
